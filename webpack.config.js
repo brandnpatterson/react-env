@@ -10,8 +10,7 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 module.exports = {
   devtool: isDevelopment && 'inline-source-map',
   devServer: {
-    hot: true,
-    stats: 'errors-only'
+    hot: true
   },
   entry: './src/index.js',
   output: {
@@ -25,6 +24,13 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'eslint-loader'
         }
       },
       {
