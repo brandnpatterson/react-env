@@ -5,9 +5,9 @@
   "author": "Brandon Patterson",
   "license": "MIT",
   "scripts": {
-    "build": "npm run clean && NODE_ENV=production webpack --mode production",
+    "build": "npm run clean && NODE_ENV=production webpack --mode -p",
     "clean": "rimraf build/*",
-    "start": "npm run clean && NODE_ENV=development webpack-dev-server --mode development --client-log-level warning --open --port 3000",
+    "start": "npm run clean && NODE_ENV=development webpack-dev-server --mode -d --client-log-level warning --open --port 3000",
     "test:cypress": "cypress open",
     "test:jest": "jest"
   },
