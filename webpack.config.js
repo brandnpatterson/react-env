@@ -5,17 +5,20 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
-  devtool: isDevelopment && 'inline-source-map',
+  devtool: isDev && 'inline-source-map',
   devServer: {
-    hot: true
+    hot: isDev && true
   },
+  stats: 'minimal',
   entry: './src/index.js',
   output: {
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
     path: path.resolve(__dirname, 'public'),
-    filename: 'bundle.js'
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -36,7 +39,7 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -51,18 +54,26 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './src/index.html',
+      template: './public/index.html',
       filename: './index.html',
       inject: true
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'style.css',
-      chunkFilename: '[id].css'
-    }),
+    })
+  ]
+};
+
+if (isDev) {
+  module.exports.plugins.push(
     new StyleLintPlugin({
       files: './src/scss/**/*.scss',
       syntax: 'scss'
     }),
     new webpack.HotModuleReplacementPlugin()
-  ]
-};
+  );
+} else {
+  module.exports.plugins.push(
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
+      chunkFilename: '[id].css'
+    })
+  );
+}

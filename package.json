@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "build": "npm run clean && NODE_ENV=production webpack --mode production",
-    "clean": "rimraf public/*.js && rimraf public/*.css",
-    "start": "npm run clean && NODE_ENV=development webpack-dev-server --mode development --open",
+    "clean": "rimraf public/*.css && rimraf public/*.js",
+    "start": "npm run clean && NODE_ENV=development webpack-dev-server --mode development --open --port 3000",
     "test:cypress": "cypress open",
     "test:jest": "jest"
   },
