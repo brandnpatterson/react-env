@@ -23,16 +23,11 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'eslint-loader'
-        }
+        use: [
+          'babel-loader',
+          'eslint-loader',
+          'stylelint-custom-processor-loader'
+        ]
       }
     ]
   },
