@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -7,6 +8,7 @@ const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
   devtool: isDev && 'inline-source-map',
   devServer: {
+    contentBase: isDev ? 'public' : 'build',
     hot: isDev && true
   },
   stats: 'minimal',
@@ -14,8 +16,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
-    path: path.resolve(__dirname, isDev ? 'public' : 'build'),
-    publicPath: '/'
+    path: path.resolve(__dirname, isDev ? 'public' : 'build')
   },
   module: {
     rules: [
@@ -46,4 +47,13 @@ module.exports = {
 
 if (isDev) {
   module.exports.plugins.push(new webpack.HotModuleReplacementPlugin());
+} else {
+  module.exports.plugins.push(
+    new CopyWebpackPlugin([
+      {
+        from: 'public',
+        to: ''
+      }
+    ])
+  );
 }

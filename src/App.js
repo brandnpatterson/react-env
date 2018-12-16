@@ -46,6 +46,7 @@ class App extends Component {
             </ul>
           </div>
         )}
+        <img src="patterson-family.jpg" alt="Brandon Patterson" />
         <Footer />
       </StyledApp>
     );

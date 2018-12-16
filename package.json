@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npm run clean && NODE_ENV=production webpack -p",
     "clean": "rimraf build",
-    "start": "npm run clean && NODE_ENV=development webpack-dev-server -d --client-log-level warning --open --port 3000",
+    "start": "NODE_ENV=development webpack-dev-server -d --client-log-level warning --open --port 3000",
     "test:cypress": "cypress open",
     "test:jest": "jest --config jest.config.json --no-cache"
   },
@@ -26,6 +26,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
+    "copy-webpack-plugin": "^4.6.0",
     "cypress": "^3.1.3",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
