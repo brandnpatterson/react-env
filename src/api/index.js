@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const req = 'https://reqres.in/api/users?page=3';
 
-const handleRequest = () => {
+const fetchUsers = () => {
   return new Promise((resolve, reject) => {
     axios
       .get(req)
@@ -13,4 +13,4 @@ const handleRequest = () => {
   });
 };
 
-export default handleRequest;
+export default fetchUsers;

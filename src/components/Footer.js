@@ -3,16 +3,13 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer>
-      <p>
-        &copy; {new Date().getFullYear()}{' '}
-        <a
-          href="https://github.com/brandnpatterson"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Brandon Patterson
-        </a>
-      </p>
+      <a
+        href="https://github.com/brandnpatterson"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        &copy; {new Date().getFullYear()} Brandon Patterson
+      </a>
     </footer>
   );
 };

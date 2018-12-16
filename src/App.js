@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
-import handleRequest from './api';
+import Loading from './components/Loading';
+
+import fetchUsers from './api';
 
 class App extends Component {
   state = {
@@ -10,7 +14,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    handleRequest().then(res => {
+    fetchUsers().then(res => {
       this.setState({
         loading: false,
         users: res.data
@@ -30,34 +34,26 @@ class App extends Component {
     };
 
     return (
-      <div>
+      <StyledApp>
         <Header message="Hello React Env" />
         {loading ? (
-          <div>
-            <p>Loading...</p>
-          </div>
+          <Loading />
         ) : (
           <div>
-            <h2>Users</h2>
-            <p>
-              from{' '}
-              <a
-                href="https://reqres.in"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                https://reqres.in
-              </a>
-            </p>
+            <h2>Users List</h2>
             <ul>
               <Users />
             </ul>
           </div>
         )}
         <Footer />
-      </div>
+      </StyledApp>
     );
   }
 }
+
+const StyledApp = styled.div`
+  border: 1px dashed black;
+`;
 
 export default App;
