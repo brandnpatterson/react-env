@@ -64,7 +64,7 @@ module.exports = {
 if (isDev) {
   module.exports.plugins.push(
     new StyleLintPlugin({
-      files: './src/scss/**/*.scss',
+      files: './src/**/*.scss',
       syntax: 'scss'
     }),
     new webpack.HotModuleReplacementPlugin()
