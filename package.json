@@ -8,8 +8,8 @@
     "build": "npm run clean && NODE_ENV=production webpack -p",
     "clean": "rimraf build",
     "start": "NODE_ENV=development webpack-dev-server -d --client-log-level warning --open --port 3000",
-    "test:cypress": "cypress open",
-    "test:jest": "jest --config jest.config.json --no-cache"
+    "cypress": "cypress open",
+    "jest": "jest --config jest.config.json --no-cache --watch"
   },
   "dependencies": {
     "axios": "^0.18.0",
